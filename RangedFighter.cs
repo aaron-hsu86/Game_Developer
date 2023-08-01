@@ -4,21 +4,27 @@ public class RangedFighter : Enemy
     public RangedFighter(string name) : base(name)
     {
         Distance = 5;
+        MaxHealth = Health;
         Attack attack1 = new Attack("Arrow",20);
         Attack attack2 = new Attack("Knife",15);
         this.AddAttack(attack1);
         this.AddAttack(attack2);
     }
-
-    public void Attack(Enemy Target, string attack)
+//! Not using this for now because I've set up a string parameter to search for the attack
+// use the performAttack in parent
+    public void UseAttack(Enemy Target, string attack)
     {
-        if (Distance < 10)
+        if (Target.Health <= 0 )
         {
-            Console.WriteLine($"Enemy too close, {this._Name} cannot attack!");
+            Console.WriteLine($"{Target.Name} is already down, cannot attack!");
+        }
+        else if (Distance < 10)
+        {
+            Console.WriteLine($"Enemy too close, {this.Name} cannot attack!");
         }
         else
         {
-            Attack atk = this.AttackList.Find(action => action._Name == attack);
+            Attack atk = this.AttackList.Find(action => action.Name == attack);
             if (atk != null)
             {
                 this.PerformAttack(Target, atk);
@@ -33,7 +39,7 @@ public class RangedFighter : Enemy
     public void Dash()
     {
         this.Distance = 20;
-        Console.WriteLine($"{this._Name} used the Dash action!");
+        Console.WriteLine($"{this.Name} used the Dash action!");
     }
 
 

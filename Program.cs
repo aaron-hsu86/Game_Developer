@@ -24,16 +24,23 @@ MeleeFighter melee1 = new MeleeFighter("Fighter");
 RangedFighter ranged1 = new RangedFighter("Ranger");
 MagicCaster caster1 = new MagicCaster("Mage");
 
-melee1.Attack(ranged1, "Kick");
+melee1.UseAttack(ranged1, "Kick");
 melee1.RageAttack(caster1);
-ranged1.Attack(melee1, "Arrow");
+ranged1.UseAttack(melee1, "Arrow");
 ranged1.Dash();
-ranged1.Attack(melee1, "Arrow");
-caster1.Attack(melee1, "Fireball");
+ranged1.UseAttack(melee1, "Arrow");
+caster1.UseAttack(melee1, "Fireball");
 caster1.Heal(ranged1);
+caster1.Heal(caster1);
 caster1.Heal(caster1);
 // testing what happens if I put an attack not in the attack list:
 // melee1.Attack(caster1, "break");
+// Check dealing dmg to 0 health target
+melee1.UseAttack(caster1, "Punch");
+melee1.UseAttack(caster1, "Kick");
+melee1.UseAttack(caster1, "Tackle");
+melee1.UseAttack(caster1, "Tackle");
+melee1.UseAttack(caster1, "Tackle");
 
 Console.WriteLine("-=|Character info:|=-");
 melee1.ShowInfo();
