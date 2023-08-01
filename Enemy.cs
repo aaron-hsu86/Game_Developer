@@ -1,7 +1,7 @@
 public class Enemy
 {
     string Name;
-    int Health;
+    protected int Health;
     public List<Attack> AttackList;
 
     public Enemy(string name)
@@ -15,7 +15,7 @@ public class Enemy
     {
         Random random = new Random();
         Attack randomAttack = AttackList[random.Next(0,AttackList.Count)];
-        Console.WriteLine($"{Name} attacked with {randomAttack._Name}, dealing {randomAttack._Damage} damage!");
+        // Removed print statement, just return random attack
         return randomAttack;
     }
 
@@ -32,16 +32,26 @@ public class Enemy
     public int _Health
     {
         get {return Health;}
+        set {Health = value;}
     }
 
     public void ShowInfo()
     {
-        Console.WriteLine($"Enemy name: {Name}");
-        Console.WriteLine($"{Name}'s health: {Health}");
+        Console.WriteLine($"Enemy Name: {Name}");
+        Console.WriteLine($"{Name}'s Health: {Health}");
         Console.WriteLine($"{Name}'s Attacks:");
         foreach (Attack attack in AttackList)
         {
             Console.WriteLine($"- {attack._Name}");
         }
     }
+
+    public void PerformAttack(Enemy Target, Attack ChosenAttack)
+    {
+        // Write some logic here to reduce the Targets health by your Attack's DamageAmount
+        Target._Health -= ChosenAttack._DamageAmount;
+        Console.WriteLine($"{Name} attacks {Target._Name} with a {ChosenAttack._Name}, dealing {ChosenAttack._DamageAmount} damage and reducing {Target._Name}'s health to {Target._Health}!!");
+    }
+
+
 }

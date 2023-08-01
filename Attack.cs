@@ -12,9 +12,11 @@ public class Attack
     public string _Name
     {
         get {return Name;}
+        set {Name = value;}
     }
-    public int _Damage
+    public int _DamageAmount
     {
         get {return Damage;}
+        set {Damage = value;}
     }
 }
